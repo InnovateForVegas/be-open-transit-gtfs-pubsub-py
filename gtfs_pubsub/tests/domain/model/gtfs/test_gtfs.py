@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with be-open-transit-gtfs-pubsub-py.  If not, see <http://www.gnu.org/licenses/>.
 
-import gtfs_pubsub.gtfs.realtime
+import gtfs_pubsub.domain.model.gtfs
 
 
 def test_version():
-	assert gtfs_pubsub.gtfs.realtime.__version__ == '0.1.0'
+	assert gtfs_pubsub.domain.model.gtfs.__version__ == '0.1.0'
