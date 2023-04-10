@@ -20,3 +20,7 @@
 # Domain of this hexagonal system
 
 This is where the business logic of this hexagon lives.
+
+There should be as little external code as possible inside the domain.
+
+This does not mean there can be no standard modules and libraries, it does mean that the domain becomes less isolated as it depends on more external code.
