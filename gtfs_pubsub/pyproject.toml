@@ -10,6 +10,10 @@ packages = [{include = "gtfs_pubsub"}]
 python = "^3.11"
 gtfs-realtime-bindings = "^1.0.0"
 pydantic = "^1.10.7"
+isocodes = "^2023.3.9"
+python-dateutil = "^2.8.2"
+python-bcp47 = "^0.0.4"
+phonenumbers = "^8.13.8"
 
 
 [build-system]

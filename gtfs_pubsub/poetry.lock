@@ -16,6 +16,36 @@ protobuf = "*"
 setuptools = "*"
 
 [[package]]
+name = "isocodes"
+version = "2023.3.9"
+description = "This project provides lists of various ISO standards (e.g. country, language, language scripts, and currency names) in one place"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "isocodes-2023.3.9-py2.py3-none-any.whl", hash = "sha256:91a9fddd1cc3fcbe0b67cddbb44cc26a2fc2718a5657f14a4f338b8f84307c46"},
+    {file = "isocodes-2023.3.9.tar.gz", hash = "sha256:640ec4db2fc860e327ffc51b5e2013b438bd3077c0f82333af40bec2e2d79a22"},
+]
+
+[package.extras]
+build = ["hatch (==1.6.3)"]
+dev = ["mypy (==1.1.1)", "pre-commit (>=2.17.0,<3.0.0)", "ruff (==0.0.254)"]
+doc = ["mkdocs (==1.4.2)", "mkdocs-material (==9.0.2)", "mkdocstrings (==0.19.1)"]
+test = ["pytest (==7.2.0)", "tox (==4.2.8)"]
+
+[[package]]
+name = "phonenumbers"
+version = "8.13.8"
+description = "Python version of Google's common library for parsing, formatting, storing and validating international phone numbers."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "phonenumbers-8.13.8-py2.py3-none-any.whl", hash = "sha256:1b7c75c4a5e62885a0be0a6b073b7e3f4ce6672fd42ab7b4a6b46359c40591d0"},
+    {file = "phonenumbers-8.13.8.tar.gz", hash = "sha256:4ba92a917fb8f6e3fe33fd04b9d84299852ce237289129ee4eda47a043a5c6c4"},
+]
+
+[[package]]
 name = "protobuf"
 version = "4.22.1"
 description = ""
@@ -92,6 +122,36 @@ dotenv = ["python-dotenv (>=0.10.4)"]
 email = ["email-validator (>=1.0.3)"]
 
 [[package]]
+name = "python-bcp47"
+version = "0.0.4"
+description = "Parser and validator for language codes (bcp47). Also exposes the IANA language code database"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "python-bcp47-0.0.4.tar.gz", hash = "sha256:256e618742d85130a2a25db568a9fe6edd8a2d5c9460f38ff9b678f27264a15b"},
+    {file = "python_bcp47-0.0.4-py3-none-any.whl", hash = "sha256:c381759702aacd0adf352b004786924028ab8b071a8aeb13756787ce3a8ed477"},
+]
+
+[package.extras]
+test = ["codecov", "flake8 (==2.4.1)", "pytest", "pytest-cov"]
+
+[[package]]
+name = "python-dateutil"
+version = "2.8.2"
+description = "Extensions to the standard Python datetime module"
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+files = [
+    {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},
+    {file = "python_dateutil-2.8.2-py2.py3-none-any.whl", hash = "sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"},
+]
+
+[package.dependencies]
+six = ">=1.5"
+
+[[package]]
 name = "setuptools"
 version = "67.6.1"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
@@ -109,6 +169,18 @@ testing = ["build[virtualenv]", "filelock (>=3.4.0)", "flake8 (<5)", "flake8-202
 testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pytest", "pytest-enabler", "pytest-xdist", "tomli", "virtualenv (>=13.0.0)", "wheel"]
 
 [[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+files = [
+    {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
+    {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.5.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
@@ -123,4 +195,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "9e1032bf40d314a4b0defd0b693bfff08eb7ac839c79e5a35cac8f89c8e83d23"
+content-hash = "38eace5f1c185aa3dfa982833273f8a68747f0e40f7cc5431e374a86a73417a0"
