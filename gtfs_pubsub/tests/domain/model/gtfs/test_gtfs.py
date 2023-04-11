@@ -16,7 +16,7 @@
 # along with be-open-transit-gtfs-pubsub-py.  If not, see <http://www.gnu.org/licenses/>.
 
 import gtfs_pubsub.domain.model.gtfs
-
+from . import __version__
 
 def test_version():
-	assert gtfs_pubsub.domain.model.gtfs.__version__ == '0.1.0'
+	assert gtfs_pubsub.domain.model.gtfs.__version__ == __version__
