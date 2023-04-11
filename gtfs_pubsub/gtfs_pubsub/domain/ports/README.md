@@ -26,3 +26,5 @@ Adaptors are outside of the domain, inside the hex, as implementations of the do
 External driving or incoming communications take place as though each is passing through a port, through an adaptor.
 
 Similarly, when the domain or the hex in general conducts driven outgoing communications with other services (database is a common example)
+
+Thus, ports are abstract interfaces, adaptors are concrete implementations.
