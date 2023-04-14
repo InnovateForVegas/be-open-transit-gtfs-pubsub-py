@@ -18,3 +18,7 @@
 -->
 
 # GTFS Realtime
+
+The Realtime feed encapsulates several messages, grouped by TripUpdate, VehicleUpdate, and Alert.
+
+There does not seem to be a valid reason all messages could appear in a single feed.
