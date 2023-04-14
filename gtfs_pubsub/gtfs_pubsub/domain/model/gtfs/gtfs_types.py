@@ -491,3 +491,309 @@ class Url(str):
 
 	def __repr__(self):
 		return f'Url({super().__repr__()})'
+
+# ######## Protobuf types (this is extra validation)
+
+
+class Boolean(str):
+
+	@classmethod
+	def __get_validators__(cls):
+		yield cls.validate
+
+	@classmethod
+	def validate(cls, v):
+		if not isinstance(v, (str, bool)):
+			raise TypeError('string or bool required')
+
+		m = bool(v)
+
+		if m is None:
+			raise ValueError('invalid Boolean value')
+
+		return cls(v)
+
+	def __repr__(self):
+		return f'Boolean({super().__repr__()})'
+
+
+
+# ######## TextEnum Types used in the realtime models
+
+class IncrementalityEnum(str):
+
+	"""
+	https://gtfs.org/realtime/reference/#enum-incrementality
+	"""
+
+
+	@classmethod
+	def __get_validators__(cls):
+		yield cls.validate
+
+	@classmethod
+	def validate(cls, v):
+		if not isinstance(v, str):
+			raise TypeError('string required')
+
+		m = v.upper() in ['FULL_DATASET', 'DIFFERENTIAL']
+
+		if not m:
+			raise ValueError('invalid enum value')
+
+		return cls(v.upper())
+
+	def __repr__(self):
+		return f'IncrementalityEnum({super().__repr__()})'
+
+
+class StopTimeScheduleRelationshipEnum(str):
+
+	"""
+	Same enum name different uses, see below
+	https://gtfs.org/realtime/reference/#enum-schedulerelationship
+	"""
+
+
+	@classmethod
+	def __get_validators__(cls):
+		yield cls.validate
+
+	@classmethod
+	def validate(cls, v):
+		if not isinstance(v, str):
+			raise TypeError('string required')
+
+		m = v.upper() in ['SCHEDULED', 'SKIPPED', 'NO_DATA', 'UNSCHEDULED']
+
+		if not m:
+			raise ValueError('invalid enum value')
+
+		return cls(v.upper())
+
+	def __repr__(self):
+		return f'ScheduleRelationshipEnum({super().__repr__()})'
+
+class VehicleStopStatusEnum(str):
+
+	"""
+	https://gtfs.org/realtime/reference/#enum-vehiclestopstatus
+	"""
+
+
+	@classmethod
+	def __get_validators__(cls):
+		yield cls.validate
+
+	@classmethod
+	def validate(cls, v):
+		if not isinstance(v, str):
+			raise TypeError('string required')
+
+		m = v.upper() in ['INCOMING_AT', 'STOPPED_AT', 'IN_TRANSIT_TO']
+
+		if not m:
+			raise ValueError('invalid enum value')
+
+		return cls(v.upper())
+
+	def __repr__(self):
+		return f'VehicleStopStatusEnum({super().__repr__()})'
+
+
+class CongestionLevelEnum(str):
+
+	"""
+	https://gtfs.org/realtime/reference/#enum-congestionlevel
+	"""
+
+
+	@classmethod
+	def __get_validators__(cls):
+		yield cls.validate
+
+	@classmethod
+	def validate(cls, v):
+		if not isinstance(v, str):
+			raise TypeError('string required')
+
+		m = v.upper() in ['UNKNOWN_CONGESTION_LEVEL', 'RUNNING_SMOOTHLY', 'STOP_AND_GO', 'CONGESTION', 'SEVERE_CONGESTION']
+
+		if not m:
+			raise ValueError('invalid enum value')
+
+		return cls(v.upper())
+
+	def __repr__(self):
+		return f'CongestionLevelEnum({super().__repr__()})'
+
+
+class OccupancyStatusEnum(str):
+
+	"""
+	https://gtfs.org/realtime/reference/#enum-occupancystatus
+	"""
+
+
+	@classmethod
+	def __get_validators__(cls):
+		yield cls.validate
+
+	@classmethod
+	def validate(cls, v):
+		if not isinstance(v, str):
+			raise TypeError('string required')
+
+		m = v.upper() in [
+				'EMPTY', 'MANY_SEATS_AVAILABLE', 'FEW_SEATS_AVAILABLE', 'STANDING_ROOM_ONLY', 'CRUSHED_STANDING_ROOM_ONLY',
+				'FULL', 'NOT_ACCEPTING_PASSENGERS', 'NO_DATA_AVAILABLE', 'NOT_BOARDABLE'
+			]
+
+		if not m:
+			raise ValueError('invalid enum value')
+
+		return cls(v.upper())
+
+	def __repr__(self):
+		return f'OccupancyStatusEnum({super().__repr__()})'
+
+
+class CauseEnum(str):
+
+	"""
+	https://gtfs.org/realtime/reference/#enum-cause
+	"""
+
+
+	@classmethod
+	def __get_validators__(cls):
+		yield cls.validate
+
+	@classmethod
+	def validate(cls, v):
+		if not isinstance(v, str):
+			raise TypeError('string required')
+
+		m = v.upper() in [
+				'UNKNOWN_CAUSE', 'OTHER_CAUSE', 'TECHNICAL_PROBLEM', 'STRIKE', 'DEMONSTRATION', 'ACCIDENT',
+				'HOLIDAY', 'WEATHER', 'MAINTENANCE', 'CONSTRUCTION', 'POLICE_ACTIVITY', 'MEDICAL_EMERGENCY'
+			]
+
+		if not m:
+			raise ValueError('invalid enum value')
+
+		return cls(v.upper())
+
+	def __repr__(self):
+		return f'CauseEnum({super().__repr__()})'
+
+
+class EffectEnum(str):
+
+	"""
+	https://gtfs.org/realtime/reference/#enum-effect
+	"""
+
+
+	@classmethod
+	def __get_validators__(cls):
+		yield cls.validate
+
+	@classmethod
+	def validate(cls, v):
+		if not isinstance(v, str):
+			raise TypeError('string required')
+
+		m = v.upper() in [
+				'NO_SERVICE', 'REDUCED_SERVICE', 'SIGNIFICANT_DELAYS', 'DETOUR', 'ADDITIONAL_SERVICE','MODIFIED_SERVICE',
+				'OTHER_EFFECT', 'UNKNOWN_EFFECT', 'STOP_MOVED', 'NO_EFFECT', 'ACCESSIBILITY_ISSUE'
+			]
+
+		if not m:
+			raise ValueError('invalid enum value')
+
+		return cls(v.upper())
+
+	def __repr__(self):
+		return f'EffectEnum({super().__repr__()})'
+
+class SeverityLevelEnum(str):
+
+	"""
+	https://gtfs.org/realtime/reference/#enum-severitylevel
+	"""
+
+
+	@classmethod
+	def __get_validators__(cls):
+		yield cls.validate
+
+	@classmethod
+	def validate(cls, v):
+		if not isinstance(v, str):
+			raise TypeError('string required')
+
+		m = v.upper() in ['UNKNOWN_SEVERITY', 'INFO', 'WARNING', 'DETOUR', 'SEVERE']
+
+		if not m:
+			raise ValueError('invalid enum value')
+
+		return cls(v.upper())
+
+	def __repr__(self):
+		return f'SeverityLevelEnum({super().__repr__()})'
+
+
+class TripScheduleRelationshipEnum(str):
+
+	"""
+	Same enum name different uses, see above
+	https://gtfs.org/realtime/reference/#enum-schedulerelationship_1
+	"""
+
+
+	@classmethod
+	def __get_validators__(cls):
+		yield cls.validate
+
+	@classmethod
+	def validate(cls, v):
+		if not isinstance(v, str):
+			raise TypeError('string required')
+
+		m = v.upper() in ['SCHEDULED', 'ADDED', 'UNSCHEDULED', 'CANCELED', 'DUPLICATED', 'DELETED']
+
+		if not m:
+			raise ValueError('invalid enum value')
+
+		return cls(v.upper())
+
+	def __repr__(self):
+		return f'ScheduleRelationshipEnum({super().__repr__()})'
+
+
+class WheelchairAccessibleEnum(str):
+
+	"""
+	https://gtfs.org/realtime/reference/#enum-wheelchairaccessible
+	"""
+
+
+	@classmethod
+	def __get_validators__(cls):
+		yield cls.validate
+
+	@classmethod
+	def validate(cls, v):
+		if not isinstance(v, str):
+			raise TypeError('string required')
+
+		m = v.upper() in ['NO_VALUE', 'UNKNOWN', 'WHEELCHAIR_ACCESSIBLE', 'WHEELCHAIR_INACCESSIBLE']
+
+		if not m:
+			raise ValueError('invalid enum value')
+
+		return cls(v.upper())
+
+	def __repr__(self):
+		return f'WheelchairAccessibleEnum({super().__repr__()})'

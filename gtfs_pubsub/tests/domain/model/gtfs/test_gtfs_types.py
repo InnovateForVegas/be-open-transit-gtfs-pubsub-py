@@ -15,7 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with be-open-transit-gtfs-pubsub-py.  If not, see <http://www.gnu.org/licenses/>.
 
-from gtfs_pubsub.domain.model.gtfs.gtfs_types import Color, CurrencyCode, CurrencyAmount, Date, Email, Enum, ID, LanguageCode, Latitude, Longitude, Float, Integer, PhoneNumber, Time, Text, Timezone, Url
+from gtfs_pubsub.domain.model.gtfs.gtfs_types import (
+    Color, CurrencyCode, CurrencyAmount, Date, Email, Enum, ID, LanguageCode, Latitude, Longitude, Float, Integer, PhoneNumber, Time, Text, Timezone, Url, Boolean,
+    IncrementalityEnum, StopTimeScheduleRelationshipEnum, VehicleStopStatusEnum, CongestionLevelEnum, OccupancyStatusEnum, CauseEnum, EffectEnum,
+		SeverityLevelEnum, TripScheduleRelationshipEnum, WheelchairAccessibleEnum
+)
+
 from pydantic import BaseModel
 import pytest
 import decimal
@@ -325,3 +330,209 @@ def test_Url_invalid_string():
 def test_Url_invalid_integer():
 	with pytest.raises(Exception) as e_info:
 		u = UrlModel(test_Url=1234)
+
+# ########### Realtime Types
+# ##########################
+
+# ########### Proto Boolean
+
+class BooleanModel(BaseModel):
+	test_Boolean: Boolean
+
+def test_Boolean_valid_true_string():
+	b = BooleanModel(test_Boolean="True")
+	assert b.test_Boolean == "True"
+
+def test_Boolean_valid_true_bool():
+	b = BooleanModel(test_Boolean=True)
+	assert b.test_Boolean == "True"
+
+def test_Boolean_valid_false_string():
+	b = BooleanModel(test_Boolean="False")
+	assert b.test_Boolean == "False"
+
+def test_Boolean_valid_false_bool():
+	b = BooleanModel(test_Boolean=False)
+	assert b.test_Boolean == "False"
+
+def test_Boolean_invalid_true_int():
+	with pytest.raises(Exception) as e_info:
+		b = BooleanModel(test_Boolean=1)
+
+def test_Boolean_invalid_false_int():
+	with pytest.raises(Exception) as e_info:
+		b = BooleanModel(test_Boolean=0)
+
+
+# ########### Realtime Enums
+# ##########################
+
+# ########### IncrementalityEnum
+class IncrementalityEnumModel(BaseModel):
+	test_IncrementalityEnum: IncrementalityEnum
+
+def test_IncrementalityEnum_valid_uppercase():
+	i = IncrementalityEnumModel(test_IncrementalityEnum="FULL_DATASET")
+	assert i.test_IncrementalityEnum == "FULL_DATASET"
+
+def test_IncrementalityEnum_valid_lowercase():
+	i = IncrementalityEnumModel(test_IncrementalityEnum="differential")
+	assert i.test_IncrementalityEnum == "DIFFERENTIAL"
+
+def test_IncrementalityEnum_invalid_integer():
+	with pytest.raises(Exception) as e_info:
+		i = IncrementalityEnumModel(test_IncrementalityEnum=1)
+
+
+# ########### StopTimeScheduleRelationshipEnum
+class StopTimeScheduleRelationshipEnumModel(BaseModel):
+	test_StopTimeScheduleRelationshipEnum: StopTimeScheduleRelationshipEnum
+
+def test_StopTimeScheduleRelationshipEnum_valid_uppercase():
+	i = StopTimeScheduleRelationshipEnumModel(test_StopTimeScheduleRelationshipEnum="SCHEDULED")
+	assert i.test_StopTimeScheduleRelationshipEnum == "SCHEDULED"
+
+def test_StopTimeScheduleRelationshipEnum_valid_lowercase():
+	i = StopTimeScheduleRelationshipEnumModel(test_StopTimeScheduleRelationshipEnum="skipped")
+	assert i.test_StopTimeScheduleRelationshipEnum == "SKIPPED"
+
+def test_StopTimeScheduleRelationshipEnum_invalid_integer():
+	with pytest.raises(Exception) as e_info:
+		i = StopTimeScheduleRelationshipEnumModel(test_StopTimeScheduleRelationshipEnum=1)
+
+# ########### VehicleStopStatusEnum
+class VehicleStopStatusEnumModel(BaseModel):
+	test_VehicleStopStatusEnum: VehicleStopStatusEnum
+
+def test_VehicleStopStatusEnum_valid_uppercase():
+	v = VehicleStopStatusEnumModel(test_VehicleStopStatusEnum="INCOMING_AT")
+	assert v.test_VehicleStopStatusEnum == "INCOMING_AT"
+
+def test_VehicleStopStatusEnum_valid_lowercase():
+	v = VehicleStopStatusEnumModel(test_VehicleStopStatusEnum="in_transit_to")
+	assert v.test_VehicleStopStatusEnum == "IN_TRANSIT_TO"
+
+def test_VehicleStopStatusEnum_invalid_integer():
+	with pytest.raises(Exception) as e_info:
+		v = VehicleStopStatusEnumModel(test_VehicleStopStatusEnum=1)
+
+
+# ########### CongestionLevelEnum
+class CongestionLevelEnumModel(BaseModel):
+	test_CongestionLevelEnum: CongestionLevelEnum
+
+def test_CongestionLevelEnum_valid_uppercase():
+	c = CongestionLevelEnumModel(test_CongestionLevelEnum="STOP_AND_GO")
+	assert c.test_CongestionLevelEnum == "STOP_AND_GO"
+
+def test_CongestionLevelEnum_valid_lowercase():
+	c = CongestionLevelEnumModel(test_CongestionLevelEnum="running_smoothly")
+	assert c.test_CongestionLevelEnum == "RUNNING_SMOOTHLY"
+
+def test_CongestionEnum_invalid_integer():
+	with pytest.raises(Exception) as e_info:
+		c = CongestionLevelEnumModel(test_CongestionLevelEnum=1)
+
+
+
+# ########### OccupancyStatusEnum
+class OccupancyStatusEnumModel(BaseModel):
+	test_OccupancyStatusEnum: OccupancyStatusEnum
+
+def test_OccupancyStatusEnum_valid_uppercase():
+	o = OccupancyStatusEnumModel(test_OccupancyStatusEnum="MANY_SEATS_AVAILABLE")
+	assert o.test_OccupancyStatusEnum=="MANY_SEATS_AVAILABLE"
+
+def test_OccupancyStatusEnum_valid_lowercase():
+	o = OccupancyStatusEnumModel(test_OccupancyStatusEnum="standing_room_only")
+	assert o.test_OccupancyStatusEnum=="STANDING_ROOM_ONLY"
+
+def test_OccupancyStatusEnum_invalid_integer():
+	with pytest.raises(Exception) as e_info:
+		o = OccupancyStatusEnumModel(test_OccupancyStatusEnum=1)
+
+
+# ########### CauseEnum
+class CauseEnumModel(BaseModel):
+	test_CauseEnum: CauseEnum
+
+def test_CauseEnum_valid_uppercase():
+	c = CauseEnumModel(test_CauseEnum="TECHNICAL_PROBLEM")
+	assert c.test_CauseEnum=="TECHNICAL_PROBLEM"
+
+def test_CauseEnum_valid_lowercase():
+	c = CauseEnumModel(test_CauseEnum="strike")
+	assert c.test_CauseEnum=="STRIKE"
+
+def test_CauseEnum_invalid_integer():
+	with pytest.raises(Exception) as e_info:
+		c = CauseEnumModel(test_CauseEnum=1)
+
+
+# ########### EffectEnum
+class EffectEnumModel(BaseModel):
+	test_EffectEnum: EffectEnum
+
+def test_EffectEnum_valid_uppercase():
+	c = EffectEnumModel(test_EffectEnum="ADDITIONAL_SERVICE")
+	assert c.test_EffectEnum=="ADDITIONAL_SERVICE"
+
+def test_EffectEnum_valid_lowercase():
+	c = EffectEnumModel(test_EffectEnum="other_effect")
+	assert c.test_EffectEnum=="OTHER_EFFECT"
+
+def test_EffectEnum_invalid_integer():
+	with pytest.raises(Exception) as e_info:
+		c = EffectEnumModel(test_EffectEnum=1)
+
+
+
+# ########### SeverityLevelEnum
+class SeverityLevelEnumModel(BaseModel):
+	test_SeverityLevelEnum: SeverityLevelEnum
+
+def test_SeverityLevelEnum_valid_uppercase():
+	s = SeverityLevelEnumModel(test_SeverityLevelEnum="UNKNOWN_SEVERITY")
+	assert s.test_SeverityLevelEnum=="UNKNOWN_SEVERITY"
+
+def test_SeverityLevelEnum_valid_lowercase():
+	s = SeverityLevelEnumModel(test_SeverityLevelEnum="severe")
+	assert s.test_SeverityLevelEnum=="SEVERE"
+
+def test_SeverityLevelEnum_invalid_integer():
+	with pytest.raises(Exception):
+		s = SeverityLevelEnumModel(test_SeverityLevelEnum=1)
+
+
+# ########### TripScheduleRelationshipEnum
+class TripScheduleRelationshipEnumModel(BaseModel):
+	test_TripScheduleRelationshipEnum: TripScheduleRelationshipEnum
+
+def test_TripScheduleRelationshipEnum_valid_uppercase():
+	t = TripScheduleRelationshipEnumModel(test_TripScheduleRelationshipEnum="ADDED")
+	assert t.test_TripScheduleRelationshipEnum=="ADDED"
+
+def test_TripScheduleRelationshipEnum_valid_lowercase():
+	t = TripScheduleRelationshipEnumModel(test_TripScheduleRelationshipEnum="deleted")
+	assert t.test_TripScheduleRelationshipEnum=="DELETED"
+
+def test_TripScheduleRelationshipEnum_invalid_integer():
+	with pytest.raises(Exception) as e_info:
+		t = TripScheduleRelationshipEnumModel(test_TripScheduleRelationshipEnum=1)
+
+
+# ########### WheelchairAccessibleEnum
+class WheelchairAccessibleEnumModel(BaseModel):
+	test_WheelchairAccessibleEnum: WheelchairAccessibleEnum
+
+def test_WheelchairAccessibleEnum_valid_uppercase():
+	w = WheelchairAccessibleEnumModel(test_WheelchairAccessibleEnum="WHEELCHAIR_ACCESSIBLE")
+	assert w.test_WheelchairAccessibleEnum=="WHEELCHAIR_ACCESSIBLE"
+
+def test_WheelchairAccessibleEnum_valid_lowercase():
+	w = WheelchairAccessibleEnumModel(test_WheelchairAccessibleEnum="wheelchair_inaccessible")
+	assert w.test_WheelchairAccessibleEnum=="WHEELCHAIR_INACCESSIBLE"
+
+def test_WheelchairAccessibleEnum_invalid_integer():
+	with pytest.raises(Exception) as e_info:
+		w = WheelchairAccessibleEnumModel(test_WheelchairAccessibleEnum=1)
