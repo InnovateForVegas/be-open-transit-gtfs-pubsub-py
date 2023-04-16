@@ -15,4 +15,4 @@
 # You should have received a copy of the GNU General Public License
 # along with be-open-transit-gtfs-pubsub-py.  If not, see <http://www.gnu.org/licenses/>.
 
-__version__ = '0.1.0'
+__version__ = dict(major=0, minor=1, patch=0)
