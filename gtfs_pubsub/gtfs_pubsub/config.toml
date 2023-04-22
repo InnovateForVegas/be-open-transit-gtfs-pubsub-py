@@ -1,0 +1,9 @@
+# GTFS PubSub Default Config
+
+config = "gtfs_pubsub"
+version = {major = 0, minor = 1, patch = 0}
+
+
+[adaptor.web_schedule_gtfs]
+zipfile_url = "http://rtcws.rtcsnv.com/g/google_transit.zip"
+
